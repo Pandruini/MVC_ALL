@@ -56,7 +56,7 @@ namespace WebApi
 
             Func<string, IDbConnection> connectionFactory = name =>
             {
-                var connectionText = "Data Source=SRVDBYCUT;Initial Catalog=Drama;User ID=bgroup;Password=Aknd85T2gd96;Connection Timeout=30";
+                var connectionText = "Data Source=PANDURINI-PC;Initial Catalog=HBSSystem;User ID=qq;Password=1234;Connection Timeout=30";
 
                 var conn = new SqlConnection(connectionText);
                 if (ProfilingSession.Current == null)
@@ -70,13 +70,13 @@ namespace WebApi
             };
 
             container.RegisterInstance<Func<IDbConnection>>(
-                "Drama", () => connectionFactory("DRAMA"));
+                "Cust", () => connectionFactory("Cust"));
 
 
             container.RegisterType<ICustService, CustService>("CustService",
                  new InjectionProperty(nameof(CustService.Para), "aaa"),
                  new InjectionProperty(nameof(CustService.Para2), "bbb"),
-                 new InjectionProperty(nameof(CustService.DramaConnection), new ResolvedParameter<Func<IDbConnection>>("Drama"))
+                 new InjectionProperty(nameof(CustService.CustConnection), new ResolvedParameter<Func<IDbConnection>>("Cust"))
                 );
             container.RegisterType<ICustService, Cust2Service>("Cust2Service");
             container.RegisterType<HomeController>(

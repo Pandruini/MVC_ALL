@@ -14,7 +14,8 @@ namespace WebApi.Models
         public string Para { get; set; }
         public string Para2 { get; set; }
 
-        public Func<IDbConnection> DramaConnection { get; set; }
+        public Func<IDbConnection> CustConnection { get; set; }
+        private IDatabaseHelper DatabaseHelper { get; set; }
 
         public string getCust1()
         {
@@ -38,20 +39,31 @@ namespace WebApi.Models
         {
             using (ProfilingSession.Current.Step("Data.LoadActiveDemoData"))
             {
-                using (var conn = DramaConnection())
+                using (var conn = CustConnection())
                 {
-                    conn.Open();
+                    string sqlStatement = "select top 1 * from Customer where CustomerID=@CustomerID";
 
-                    using (var cmd = conn.CreateCommand())
-                    {
-                        cmd.CommandType = CommandType.Text;
-                        cmd.CommandText = "select top 1 * from Cust";
+                    var result = conn.Query<dynamic>(
+                           sqlStatement,
+                           new
+                           {
+                               CustomerID = 7
+                           })
+                           .FirstOrDefault();
 
-                        using (var reader = cmd.ExecuteReader())
-                        {
-                            var results = reader;
-                        }
-                    }
+
+                    //conn.Open();
+
+                    //using (var cmd = conn.CreateCommand())
+                    //{
+                    //    cmd.CommandType = CommandType.Text;
+                    //    cmd.CommandText = "select top 1 * from Customer";
+
+                    //    using (var reader = cmd.ExecuteReader())
+                    //    {
+                    //        var results = reader;
+                    //    }
+                    //}
                 }
             }
 

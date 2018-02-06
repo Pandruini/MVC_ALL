@@ -284,10 +284,10 @@
     </Compile>
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Cust2Service.cs" />
-    <Compile Include="Models\CustService.cs" />
-    <Compile Include="Models\ICustService.cs" />
-    <Compile Include="Models\IDatabaseHelper.cs" />
+    <Compile Include="Models\Service\Cust2Service.cs" />
+    <Compile Include="Models\Service\CustService.cs" />
+    <Compile Include="Models\interface\ICustService.cs" />
+    <Compile Include="Models\interface\IDatabaseHelper.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
