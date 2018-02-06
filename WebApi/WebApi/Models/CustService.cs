@@ -36,8 +36,8 @@ namespace WebApi.Models
         }
         public string getCust5()
         {
-            using (ProfilingSession.Current.Step("Data.LoadActiveDemoData"))
-            {
+            //using (ProfilingSession.Current.Step("Data.LoadActiveDemoData"))
+            //{
                 using (var conn = DramaConnection())
                 {
                     conn.Open();
@@ -53,7 +53,7 @@ namespace WebApi.Models
                         }
                     }
                 }
-            }
+            //}
 
 
             //using (var cn = this.DramaConnection())
